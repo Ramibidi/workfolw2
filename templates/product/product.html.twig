@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<center>
+    <h1>list of Product</h1>
+
+    <table width="50%" border="1" cellspacing="1" cellpadding="5">
+        <tr>
+            <th>
+                <center>Id</center>
+            </th>
+
+            <th>
+                <center>Name</center>
+            </th>
+            <th>
+                <center>Prix</center>
+            </th>
+            <th>
+                <center>Status</center>
+            </th>
+            <th>
+                <center>Buy</center>
+            </th>
+
+
+
+        </tr>
+        {% for key in product %}
+        <tr>
+            <td>
+                <center>{{ key.id }}</center>
+            </td>
+
+            <td>
+                <center>{{ key.name }}</center>
+            </td>
+            <td>
+                <center>{{ key.prix }}</center>
+            </td>
+            <td>
+                <center>{{ key.status }}</center>
+            </td>
+            <td>
+                {% if key.status == "expediee"%}
+                <center><a href={{ path('livree', {'id':key.id}) }}><button>livrer
+                            {{key.id}}</button></a></center>
+                {% elseif key.status == "livree" %}<center>Sucess</center>
+                {% else %}
+                <center><a href={{ path('slect', {'id':key.id}) }}><button>Pass product
+                            {{key.id}}</button></a></center>
+                {% endif %}
+            </td>
+</center>
+</td>
+
+
+
+
+</tr>
+{% endfor %}
+</table>
+
+
+</center>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+framework:
+
+    workflows:
+
+        envoi_commande:
+
+            type: 'workflow'
+
+            marking_store:
+
+              type: single_state
+
+              argument:
+
+                 - 'status'
+
+            supports:
+
+                - App\Entity\Products
+
+            initial_place: nulle
+
+            places:
+
+                - nulle
+
+                - passee
+
+                - annulee
+
+                - paiement_ok
+
+                - expediee
+
+                - livree
+
+            transitions:
+
+                pour_creation:
+
+                    from: nulle
+
+                    to  : passee
+
+                pour_paiement:
+
+                    from: passee
+
+                    to  : paiement_ok
+
+                to_annulee:
+
+                    from: paiement_ok
+
+                    to  : annulee
+
+                pour_expedition:
+
+                    from: paiement_ok
+
+                    to  : expediee
+                    
+
+                pour_livraison:
+
+                    from: expediee
+
+                    to  : livree
+
